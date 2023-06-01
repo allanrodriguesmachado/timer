@@ -6,12 +6,18 @@ export const HomeContainer = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3.5rem;
+  }
+
+  input {
+    background: ${(props) => props.theme['gray-400']};
+    color: ${(props) => props.theme['gray-100']};
+    border: none;
+    gap: 2rem;
   }
 `
 
