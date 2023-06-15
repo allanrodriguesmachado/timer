@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import {useState} from "react";
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
@@ -30,6 +31,8 @@ export function Home() {
   })
 
   const isSubmitDisabled = !watch('task')
+
+  const [] = useState();
 
   function handleNewCreateCycle({ task, minutesAmount }: NewCycleFormData) {
     reset()
