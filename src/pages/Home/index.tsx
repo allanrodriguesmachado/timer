@@ -14,16 +14,14 @@ import * as zod from 'zod'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
+  owner: zod.string().optional(),
   minutesAmount: zod.number().min(5).max(60),
 })
 
-type InputNewCreateCycle = {
-  task: string
-  minutesAmount: number
-}
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
-  const { register, handleSubmit, watch } = useForm<InputNewCreateCycle>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
@@ -33,7 +31,8 @@ export function Home() {
 
   const isSubmitDisabled = !watch('task')
 
-  function handleNewCreateCycle({ task, minutesAmount }: InputNewCreateCycle) {
+  function handleNewCreateCycle({ task, minutesAmount }: NewCycleFormData) {
+    reset()
     console.log({
       task,
       minutesAmount,
